@@ -5,6 +5,7 @@ import httpx
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, ValidationError
 
+from app.prompts import build_extraction_prompt
 from app.schemas import ExtractRequest, RFQExtraction
 from app.services.ollama_client import MODEL, generate, generate_json
 from app.utils.audit import log_event
@@ -43,11 +44,7 @@ async def chat(req: ChatRequest):
 @app.post("/extract", response_model=RFQExtraction)
 async def extract(req: ExtractRequest):
     start = time.time()
-    prompt = (
-        "Extract the RFQ details from the document below. "
-        "Use null for anything not stated. Do not invent values.\n\n"
-        f"DOCUMENT:\n{req.text}"
-    )
+    prompt = build_extraction_prompt(req.text)
     try:
         raw = await generate_json(prompt, RFQExtraction.model_json_schema())
         result = RFQExtraction.model_validate(raw)
