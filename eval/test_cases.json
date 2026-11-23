@@ -1,0 +1,118 @@
+[
+  {
+    "name": "Formal RFQ (the one we tested before)",
+    "text": "REQUEST FOR QUOTATION\nRFQ No: RFQ-2026-0457\nBuyer: Gulf Industrial Supplies LLC\nIssued: 10 November 2026. Quotations due by 25 November 2026, 5 PM GST.\n\nPlease quote for the following, delivered to Jebel Ali Free Zone, Dubai by 20 December 2026:\n1. Stainless steel pipes, 304 grade, 2 inch diameter - 500 meters\n2. Industrial safety gloves, cut-resistant level 5 - 200 pairs\n3. Hydraulic hose assemblies, 3/4 inch, 10 meter length - 40 pieces\n\nPayment terms: Net 45 days. Prices in USD.\nSuppliers must hold ISO 9001 certification and provide material test certificates.",
+    "expected": {
+      "rfq_number": "RFQ-2026-0457",
+      "buyer_company": "Gulf Industrial",
+      "issue_date": "10 November 2026",
+      "response_deadline": "25 November 2026",
+      "delivery_location": "Jebel Ali",
+      "delivery_date": "20 December 2026",
+      "payment_terms": "Net 45",
+      "currency": "USD",
+      "items": [
+        {"quantity": 500, "unit": "meter"},
+        {"quantity": 200, "unit": "pair"},
+        {"quantity": 40, "unit": "piece"}
+      ],
+      "special_requirements": ["ISO 9001", "test certificate"]
+    }
+  },
+  {
+    "name": "Informal email-style RFQ",
+    "text": "Subject: Quote request - office furniture\n\nHi team,\n\nAcme Trading FZE needs quotes for the items below. Reference: ACM/RFQ/118.\nThe deadline for your quotation is 30 Nov 2026 at noon.\nWe need delivery to our warehouse in Sharjah by 15 January 2027.\n\n- Office desks, 1.6m, walnut finish: 25 units\n- Ergonomic chairs with lumbar support: 60 units\n- Filing cabinets, 4 drawer, steel: 15 units\n\nPayment: 30 days after invoice. Please quote in AED.\nAll goods must carry a 2-year warranty and be CE marked.\n\nRegards,\nProcurement Team, Acme Trading FZE",
+    "expected": {
+      "rfq_number": "ACM/RFQ/118",
+      "buyer_company": "Acme Trading",
+      "issue_date": null,
+      "response_deadline": "30 Nov 2026",
+      "delivery_location": "Sharjah",
+      "delivery_date": "15 January 2027",
+      "payment_terms": "30 days",
+      "currency": "AED",
+      "items": [
+        {"quantity": 25, "unit": "unit"},
+        {"quantity": 60, "unit": "unit"},
+        {"quantity": 15, "unit": "unit"}
+      ],
+      "special_requirements": ["warranty", "CE mark"]
+    }
+  },
+  {
+    "name": "Sparse RFQ (most fields missing, tests for invented values)",
+    "text": "RFQ 7781\nPlease send your best price for 12 industrial water pumps, 5 HP, to our Muscat site.\nContact: Khalid\nThanks",
+    "expected": {
+      "rfq_number": "7781",
+      "buyer_company": null,
+      "issue_date": null,
+      "response_deadline": null,
+      "delivery_location": "Muscat",
+      "delivery_date": null,
+      "payment_terms": null,
+      "currency": null,
+      "items": [
+        {"quantity": 12, "unit": null}
+      ],
+      "special_requirements": []
+    }
+  },
+  {
+    "name": "Numbered list with DD/MM/YYYY dates and split payment",
+    "text": "RFQ NO. 2026/IT/033\nDate: 12/11/2026\nTo: All approved suppliers\nFrom: Al Noor Contracting WLL\n\nKindly submit your quotation for the following by 28/11/2026:\n1) Laptop computers, Core i7, 16GB RAM - 30 nos\n2) Network switches, 24 port managed - 8 nos\n3) UPS 3kVA online - 5 nos\n\nDelivery to Doha, Qatar by 20/01/2027.\nPayment terms: 50% advance, 50% on delivery.\nCurrency: QAR\nSuppliers must provide 3 years onsite warranty.",
+    "expected": {
+      "rfq_number": "2026/IT/033",
+      "buyer_company": "Al Noor",
+      "issue_date": "12/11/2026",
+      "response_deadline": "28/11/2026",
+      "delivery_location": "Doha",
+      "delivery_date": "20/01/2027",
+      "payment_terms": "50%",
+      "currency": "QAR",
+      "items": [
+        {"quantity": 30, "unit": "nos"},
+        {"quantity": 8, "unit": "nos"},
+        {"quantity": 5, "unit": "nos"}
+      ],
+      "special_requirements": ["warranty"]
+    }
+  },
+  {
+    "name": "Short paragraph RFQ with liquids and weights",
+    "text": "Dear supplier, RFQ ref PRC-904 dated 3 December 2026 from Blue Ocean Marine. Please quote 2000 liters marine grade diesel engine oil (SAE 15W-40) and 150 kg of industrial grease. Quotes needed before 10 December 2026. Deliver to Salalah Port by 5 January 2027. Terms: Net 60. Prices in OMR. Supplier needs a valid trade license.",
+    "expected": {
+      "rfq_number": "PRC-904",
+      "buyer_company": "Blue Ocean Marine",
+      "issue_date": "3 December 2026",
+      "response_deadline": "10 December 2026",
+      "delivery_location": "Salalah",
+      "delivery_date": "5 January 2027",
+      "payment_terms": "Net 60",
+      "currency": "OMR",
+      "items": [
+        {"quantity": 2000, "unit": "lit"},
+        {"quantity": 150, "unit": "kg"}
+      ],
+      "special_requirements": ["trade license"]
+    }
+  },
+  {
+    "name": "Construction RFQ with no dates",
+    "text": "From: Horizon Builders\nRFQ-55\nNeed 300 bags of cement (50 kg bags) and 20 tons of rebar, 12mm. Deliver to our Riyadh site. Pay within 15 days. Please quote in SAR.",
+    "expected": {
+      "rfq_number": "RFQ-55",
+      "buyer_company": "Horizon",
+      "issue_date": null,
+      "response_deadline": null,
+      "delivery_location": "Riyadh",
+      "delivery_date": null,
+      "payment_terms": "15 days",
+      "currency": "SAR",
+      "items": [
+        {"quantity": 300, "unit": "bag"},
+        {"quantity": 20, "unit": "ton"}
+      ],
+      "special_requirements": []
+    }
+  }
+]
